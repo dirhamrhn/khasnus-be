@@ -19,9 +19,12 @@ class User extends Authenticatable
      * @var list<string>
      */
     protected $fillable = [
-        'name',
+        'username',
         'email',
         'password',
+        'google_id',
+        'avatar',
+        'role'
     ];
 
     /**
@@ -45,5 +48,9 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+    public function favorites()
+    {
+        return $this->hasMany(Favorite::class);
     }
 }
