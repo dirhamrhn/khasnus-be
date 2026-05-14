@@ -15,17 +15,24 @@ class FoodController extends Controller
     }
 
     //detail makanan
-    public function show($id)
+    public function show(Request $request, $id)
     {
+        $lang = $request->query('lang', 'id');
         $food = Food::with('province')->find($id);
         if (!$food) {
             return response()->json([
                 'message' => 'Makanan tidak ditemukan'
             ], 404);
         }
+        //Jika bahasa English
+        if ($lang == 'en') {
+            $food->description = $food->description_en;
+            $food->ingredients = $food->ingredients_en;
+            $food->recipe = $food->recipe_en;
+        }
+
         return response()->json($food);
     }
-
     //makanan provensi
     public function byProvince($province_id)
     {
