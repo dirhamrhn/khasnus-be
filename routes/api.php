@@ -3,6 +3,10 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\ProvinceController;
 use App\Http\Controllers\Api\FoodController;
+// use App\Http\Controllers\Api\AuthController;
+
+// Route::get('/auth/google', [AuthController::class, 'redirectToGoogle']);
+// Route::get('/auth/google/callback', [AuthController::class, 'handleGoogleCallback']);
 
 Route::get('/foods', [FoodController::class, 'index']);
 Route::get('/foods/search', [FoodController::class, 'search']);
