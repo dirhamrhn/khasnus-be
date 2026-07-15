@@ -38,8 +38,7 @@ class AuthController extends Controller
     }
 
     /**
-     * Login manual.
-     */
+     * Login manual*/
     public function login(LoginRequest $request): JsonResponse
     {
         try {
@@ -63,8 +62,7 @@ class AuthController extends Controller
     }
 
     /**
-     * Logout.
-     */
+     * Logout*/
     public function logout(Request $request): JsonResponse
     {
         $user = $request->user();
@@ -103,7 +101,7 @@ class AuthController extends Controller
             // cek user berdasarkan email
             $user = User::where('email', $googleUser->email)->first();
 
-            // kalau belum ada → buat user baru
+            // kalau belum ada mka buat user baru
             if (!$user) {
                 $user = User::create([
                     'username' => $googleUser->name,

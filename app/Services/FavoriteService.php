@@ -14,7 +14,10 @@ class FavoriteService
     public function getFavorites(int $userId)
     {
         return Favorite::where('user_id', $userId)
-            ->with(['food.province'])
+            ->with([
+                'food' => fn($query) => $query->withCount('favorites'),
+                'food.province'
+            ])
             ->get();
     }
 
@@ -23,7 +26,7 @@ class FavoriteService
      */
     public function addFavorite(int $userId, int $foodId)
     {
-        // Pastikan food ada
+        // Pastikan makanannyaa ada
         $foodExists = Food::where('id', $foodId)->exists();
         if (!$foodExists) {
             throw ValidationException::withMessages([

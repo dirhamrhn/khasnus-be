@@ -52,5 +52,9 @@ Route::middleware('auth:sanctum')->group(function () {
 
         // Admin Image Upload helper
         Route::post('/upload', [\App\Http\Controllers\Admin\UploadController::class, 'uploadImage']);
+
+        // Admin User Management
+        Route::get('/users', [\App\Http\Controllers\Admin\UserController::class, 'index']);
+        Route::delete('/users/{id}', [\App\Http\Controllers\Admin\UserController::class, 'destroy']);
     });
 });
